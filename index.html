@@ -20,7 +20,7 @@
 
     header {
       background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-        url(https://plus.unsplash.com/premium_photo-1682144867572-3537cc9974e1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        url("https://plus.unsplash.com/premium_photo-1682144867572-3537cc9974e1?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
       background-size: cover;
       background-position: center;
       color: white;
@@ -226,6 +226,27 @@
       margin-top: 40px;
     }
 
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    .whatsapp-float img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .whatsapp-float img:hover {
+      transform: scale(1.1);
+    }
+
     @media (max-width: 992px) {
       .products {
         grid-template-columns: repeat(2, 1fr);
@@ -314,7 +335,7 @@
 
     <div class="products">
       <div class="card">
-        <img src="https://static.wixstatic.com/media/39275a_a2257442bfb94742824b301a7e6a9e03~mv2.webp/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mild%20Steel%20TMT%20Bars%20(1).webp">
+        <img src="https://static.wixstatic.com/media/39275a_a2257442bfb94742824b301a7e6a9e03~mv2.webp/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Mild%20Steel%20TMT%20Bars%20(1).webp" alt="TMT Bars">
         <div class="card-content">
           <h3>TMT Bars</h3>
           <p>High-strength TMT bars for residential, commercial, and industrial construction projects.</p>
@@ -322,7 +343,7 @@
       </div>
 
       <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5oiiUpS1Kj18pcO39M1ANTEpt3RpzDhRNw&s="Steel Pipes">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5oiiUpS1Kj18pcO39M1ANTEpt3RpzDhRNw&s" alt="Steel Pipes">
         <div class="card-content">
           <h3>Steel Pipes</h3>
           <p>Durable steel pipes for structural, plumbing, and industrial applications.</p>
@@ -400,6 +421,12 @@
   <footer>
     <p>© 2026 SteelTrade Pvt. Ltd. All Rights Reserved.</p>
   </footer>
+
+  <a href="https://wa.me/919321175751?text=Hello%20I%20need%20steel%20details"
+     class="whatsapp-float"
+     target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
 
 </body>
 </html>
