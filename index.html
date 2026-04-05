@@ -1,672 +1,404 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>जनसेवा प्रोफाइल्स</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Steel Trading Company</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      background: #eef1f5;
-      color: #1d2b44;
+      background: #f5f5f5;
+      color: #222;
+      line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .topbar {
-      width: 100%;
-      min-height: 86px;
-      background: #fff;
-      border-bottom: 1px solid #e1e5ea;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 70px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: #ef4444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    header {
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url('https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
       color: white;
-      font-size: 20px;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
-      flex-shrink: 0;
+      padding: 20px 0 100px;
     }
 
-    .brand h2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #16233b;
-    }
-
-    .topbar-right {
+    nav {
+      width: 90%;
+      margin: auto;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 18px;
     }
 
-    .gear {
-      font-size: 24px;
-      color: #64748b;
-      cursor: pointer;
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffb400;
     }
 
-    .start-btn {
-      background: #ef4444;
-      color: #fff;
-      padding: 13px 28px;
-      border-radius: 999px;
-      font-weight: 700;
-      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.25);
-      transition: 0.3s ease;
-      display: inline-block;
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
     }
 
-    .start-btn:hover {
-      transform: translateY(-2px);
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #ffb400;
     }
 
     .hero {
+      width: 90%;
+      margin: 80px auto 0;
       text-align: center;
-      padding: 60px 20px 30px;
+      max-width: 900px;
     }
 
     .hero h1 {
       font-size: 48px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: 20px;
-      line-height: 1.7;
-      color: #475569;
-    }
-
-    .controls {
-      max-width: 1240px;
-      margin: 10px auto 30px;
-      padding: 0 20px;
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .search-box,
-    .filter-box {
-      background: #fff;
-      border: 1px solid #dbe2ea;
-      border-radius: 14px;
-      padding: 14px 16px;
-      min-width: 260px;
-      font-size: 16px;
-      color: #334155;
-      outline: none;
-    }
-
-    .search-box {
-      width: 340px;
-    }
-
-    .cards-wrap {
-      max-width: 1240px;
-      margin: 0 auto 80px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-    }
-
-    .profile-card {
-      background: #fff;
-      border: 1px solid #dbe2ea;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
-      position: relative;
-      transition: 0.25s ease;
-    }
-
-    .profile-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-    }
-
-    .card-top {
-      height: 120px;
-      background: linear-gradient(135deg, #f59e0b, #ef4444);
-      position: relative;
-    }
-
-    .avatar {
-      position: absolute;
-      left: 24px;
-      bottom: -34px;
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: #fff;
-      padding: 5px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-    }
-
-    .card-body {
-      padding: 56px 24px 22px;
-      position: relative;
-      min-height: 270px;
-    }
-
-    .verify {
-      position: absolute;
-      top: 52px;
-      right: 24px;
-      width: 28px;
-      height: 28px;
-      background: #3b82f6;
-      border-radius: 50%;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .name {
-      font-size: 30px;
-      font-weight: 800;
-      color: #16233b;
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-
-    .designation {
       font-size: 18px;
-      color: #64748b;
-      margin-bottom: 16px;
-      font-weight: 500;
+      margin-bottom: 30px;
     }
 
-    .party {
+    .btn {
       display: inline-block;
-      margin-bottom: 14px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: #f1f5f9;
-      color: #334155;
-      font-size: 14px;
-      font-weight: 700;
+      padding: 12px 28px;
+      background: #ffb400;
+      color: #111;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    .desc {
-      font-size: 17px;
-      line-height: 1.7;
-      color: #334155;
-      margin-bottom: 18px;
+    .btn:hover {
+      background: #e09d00;
     }
 
-    .tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 60px auto;
     }
 
-    .tag {
-      background: #eef2f7;
-      color: #475569;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .card-footer {
-      border-top: 1px solid #e8edf3;
+    .section-title {
       text-align: center;
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: #1d3557;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .about-text h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
       padding: 20px;
     }
 
-    .card-footer a {
-      color: #ef4444;
-      font-weight: 700;
-      font-size: 18px;
+    .card-content h3 {
+      margin-bottom: 10px;
+      color: #1d3557;
     }
 
-    .empty-message {
-      max-width: 700px;
-      margin: 40px auto 80px;
-      background: #fff;
-      border: 1px solid #dbe2ea;
-      border-radius: 18px;
-      padding: 26px;
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .why-box {
+      background: white;
+      padding: 25px;
       text-align: center;
-      color: #64748b;
-      font-size: 18px;
-      display: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    .footer {
-      border-top: 1px solid #dbe2ea;
-      background: #f7f9fc;
-      padding: 22px 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #64748b;
-      font-size: 16px;
-      flex-wrap: wrap;
-      gap: 14px;
+    .why-box h4 {
+      margin-bottom: 10px;
+      color: #1d3557;
     }
 
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      color: #334155;
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
     }
 
-    .footer-icons {
-      display: flex;
-      gap: 18px;
-      font-size: 24px;
-      color: #94a3b8;
+    .contact-info,
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+      margin-bottom: 15px;
+      color: #1d3557;
+    }
+
+    .contact-info p {
+      margin-bottom: 10px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .contact-form button {
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
     }
 
     @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 38px;
+      .products {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero p {
-        font-size: 18px;
+      .why-us {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .cards-wrap {
+      .about,
+      .contact {
         grid-template-columns: 1fr;
-      }
-
-      .topbar {
-        padding: 16px 20px;
       }
     }
 
-    @media (max-width: 600px) {
-      .topbar {
+    @media (max-width: 768px) {
+      nav {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
+        gap: 15px;
       }
 
-      .topbar-right {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .hero {
-        padding-top: 40px;
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .hero h1 {
-        font-size: 30px;
+        font-size: 34px;
       }
 
-      .hero p {
-        font-size: 16px;
-      }
-
-      .name {
-        font-size: 24px;
-      }
-
-      .designation {
-        font-size: 16px;
-      }
-
-      .desc {
-        font-size: 15px;
-      }
-
-      .search-box,
-      .filter-box {
-        width: 100%;
-        min-width: unset;
-      }
-
-      .footer {
-        padding: 18px;
-        flex-direction: column;
-        text-align: center;
+      .products,
+      .why-us {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-icon">🏛</div>
-      <h2>जनसेवा प्रोफाइल्स</h2>
-    </div>
+  <header>
+    <nav>
+      <div class="logo">SteelTrade</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-    <div class="topbar-right">
-      <div class="gear">⚙</div>
-      <a href="#" class="start-btn">सुरू करा</a>
+    <div class="hero" id="home">
+      <h1>Trusted Steel Trading Solutions</h1>
+      <p>
+        We supply high-quality steel products for construction, industrial,
+        and commercial needs with reliable service and competitive pricing.
+      </p>
+      <a href="#contact" class="btn">Get Quote</a>
     </div>
   </header>
 
-  <section class="hero">
-    <h1>डेमो प्रोफाइल्स पहा</h1>
-    <p>
-      आगामी आमदार पारदर्शकता राखण्यासाठी जनसेवा प्रोफाइल्स कसे वापरत आहेत ते पहा.
-      ही चाचणी उदाहरणासाठी तयार केलेली डेमो प्रोफाइल्स आहेत.
-    </p>
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p class="section-subtitle">Reliable partner for all steel trading requirements</p>
+
+    <div class="about">
+      <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80" alt="Steel Industry">
+      <div class="about-text">
+        <h3>Your Steel Supply Partner</h3>
+        <p>
+          We are a professional steel trading company dealing in TMT bars,
+          steel sheets, pipes, coils, angles, channels, and industrial steel products.
+          Our focus is on quality material, transparent pricing, and timely delivery.
+        </p>
+        <p>
+          Whether you are a contractor, builder, manufacturer, or retailer,
+          we help you source the right steel products for your projects.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <section class="controls">
-    <input
-      type="text"
-      id="searchInput"
-      class="search-box"
-      placeholder="नाव, मतदारसंघ किंवा पक्ष शोधा..."
-    />
+  <section id="products">
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-subtitle">Wide range of premium steel products</p>
 
-    <select id="partyFilter" class="filter-box">
-      <option value="all">सर्व पक्ष</option>
-      <option value="BJP">BJP</option>
-      <option value="INC">INC</option>
-      <option value="Shiv Sena">Shiv Sena</option>
-      <option value="NCP">NCP</option>
-      <option value="IND">IND</option>
-    </select>
+    <div class="products">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=80" alt="TMT Bars">
+        <div class="card-content">
+          <h3>TMT Bars</h3>
+          <p>High-strength TMT bars for residential, commercial, and industrial construction projects.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80" alt="Steel Pipes">
+        <div class="card-content">
+          <h3>Steel Pipes</h3>
+          <p>Durable steel pipes for structural, plumbing, and industrial applications.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" alt="Steel Sheets">
+        <div class="card-content">
+          <h3>Steel Sheets & Coils</h3>
+          <p>Top-grade sheets and coils available in multiple thicknesses and dimensions.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="cards-wrap" id="cardsContainer"></section>
+  <section id="why">
+    <h2 class="section-title">Why Choose Us</h2>
+    <p class="section-subtitle">What makes our steel trading services dependable</p>
 
-  <div class="empty-message" id="emptyMessage">
-    कोणतीही प्रोफाइल सापडली नाही.
-  </div>
+    <div class="why-us">
+      <div class="why-box">
+        <h4>Quality Assured</h4>
+        <p>We provide tested and trusted steel products from reliable manufacturers.</p>
+      </div>
 
-  <footer class="footer">
-    <div class="footer-left">
-      <span>🏛</span>
-      <span>जनसेवा प्रोफाइल्स</span>
+      <div class="why-box">
+        <h4>Competitive Pricing</h4>
+        <p>Best market rates with transparent quotations and bulk order benefits.</p>
+      </div>
+
+      <div class="why-box">
+        <h4>Fast Delivery</h4>
+        <p>Timely dispatch and delivery support to keep your project moving smoothly.</p>
+      </div>
+
+      <div class="why-box">
+        <h4>Expert Support</h4>
+        <p>Professional guidance to help you choose the right steel material.</p>
+      </div>
     </div>
+  </section>
 
-    <div>© २०२५ जनसेवा प्रोफाइल्स प्लॅटफॉर्म. सर्व हक्क राखीव.</div>
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">Send your requirement and get a quick quote</p>
 
-    <div class="footer-icons">
-      <span>Ⓕ</span>
-      <span>@</span>
+    <div class="contact">
+      <div class="contact-info">
+        <h3>Company Information</h3>
+        <p><strong>Company Name:</strong> SteelTrade Pvt. Ltd.</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Email:</strong> info@steeltrade.com</p>
+        <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+        <p>
+          We deal in TMT bars, steel pipes, sheets, coils, structural steel,
+          and custom bulk steel orders.
+        </p>
+      </div>
+
+      <div class="contact-form">
+        <h3>Request a Quote</h3>
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="text" placeholder="Phone Number" required>
+          <textarea rows="5" placeholder="Enter your steel requirement"></textarea>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
     </div>
+  </section>
+
+  <footer>
+    <p>© 2026 SteelTrade Pvt. Ltd. All Rights Reserved.</p>
   </footer>
 
-  <script>
-    const profiles = [
-      {
-        name: "Aamshya Padavi",
-        constituency: "Akkalkuwa",
-        party: "INC",
-        desc: "Focus on tribal welfare, social justice, and inclusive development.",
-        tags: ["🚧 Roads", "💧 Water", "🏫 Schools"],
-        avatar: "https://randomuser.me/api/portraits/men/32.pg"
-      },
-      {
-        name: "Rajesh Padvi",
-        constituency: "Shahada",
-        party: "BJP",
-        desc: "Emphasizes infrastructure growth and strong governance in tribal areas.",
-        tags: ["🚧 Roads", "💡 Power", "🏠 Housing"],
-        avatar: "https://randomuser.me/api/portraits/men/45.jg"
-      },
-      {
-        name: "Vijaykumar Gavit",
-        constituency: "Nandurbar",
-        party: "BJP",
-        desc: "Focus on healthcare, tribal upliftment, and rural development.",
-        tags: ["🏥 Health", "🏫 Education", "💧 Water"],
-        avatar: "https://randomuser.me/api/portraits/men/54.pg"
-      },
-      {
-        name: "Naresh Pawara",
-        constituency: "Nawapur",
-        party: "BJP",
-        desc: "Promotes grassroots development and welfare schemes.",
-        tags: ["💧 Water", "🚧 Roads", "🚻 Sanitation"],
-        avatar: "https://randomuser.me/api/portraits/men/61.pg"
-      },
-      {
-        name: "Manjula Gavit",
-        constituency: "Sakri",
-        party: "BJP",
-        desc: "Focus on women empowerment and rural progress.",
-        tags: ["👩 Women", "💧 Water", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/women/50.pg"
-      },
-      {
-        name: "Kunal Patil",
-        constituency: "Dhule Rural",
-        party: "INC",
-        desc: "Supports farmer welfare and local economic development.",
-        tags: ["🌾 Irrigation", "🚧 Roads", "🏫 Schools"],
-        avatar: "https://randomuser.me/api/portraits/men/29.pg"
-      },
-      {
-        name: "Anil Gote",
-        constituency: "Dhule City",
-        party: "IND",
-        desc: "Strong local leadership with independent decision-making focus.",
-        tags: ["🏙️ Urban", "🚧 Roads", "💡 Power"],
-        avatar: "https://randomuser.me/api/portraits/men/41.pg"
-      },
-      {
-        name: "Jaykumar Rawal",
-        constituency: "Sindkheda",
-        party: "BJP",
-        desc: "Focus on industrial growth and tourism development.",
-        tags: ["🏭 Industry", "🏛️ Tourism", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/67.jg"
-      },
-      {
-        name: "Kashiram Pawara",
-        constituency: "Shirpur",
-        party: "BJP",
-        desc: "Focus on tribal rights and rural infrastructure.",
-        tags: ["🏠 Housing", "💧 Water", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/72.pg"
-      },
-      {
-        name: "Lata Sonawane",
-        constituency: "Chopda",
-        party: "Shiv Sena",
-        desc: "Regional development with focus on local employment.",
-        tags: ["💼 Jobs", "🚧 Roads", "💧 Water"],
-        avatar: "https://randomuser.me/api/portraits/women/62.pg"
-      },
-      {
-        name: "Haribhau Jawale",
-        constituency: "Raver",
-        party: "BJP",
-        desc: "Agricultural growth and rural connectivity focus.",
-        tags: ["🌾 Farming", "💧 Irrigation", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/34.pg"
-      },
-      {
-        name: "Sanjay Savkare",
-        constituency: "Bhusawal",
-        party: "BJP",
-        desc: "Focus on business development and urban infrastructure.",
-        tags: ["🏭 Industry", "🚧 Roads", "💡 Power"],
-        avatar: "https://randomuser.me/api/portraits/men/49.pg"
-      },
-      {
-        name: "Suresh Jain",
-        constituency: "Jalgaon City",
-        party: "BJP",
-        desc: "Urban development and civic infrastructure improvement.",
-        tags: ["🏙️ Urban", "💧 Water", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/38.pg"
-      },
-      {
-        name: "Gulabrao Patil",
-        constituency: "Jalgaon Rural",
-        party: "Shiv Sena",
-        desc: "Strong regional leadership and public welfare focus.",
-        tags: ["💧 Water", "🚻 Sanitation", "🏙️ Urban"],
-        avatar: "https://randomuser.me/api/portraits/men/53.pg"
-      },
-      {
-        name: "Anil Patil",
-        constituency: "Amalner",
-        party: "NCP",
-        desc: "Focus on cooperative sector and rural economy.",
-        tags: ["🌾 Farming", "🏦 Cooperative", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/31.pg"
-      },
-      {
-        name: "Chimanrao Patil",
-        constituency: "Erandol",
-        party: "Shiv Sena",
-        desc: "Local development and farmer-centric policies.",
-        tags: ["🌾 Farming", "💧 Irrigation", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/58.pg"
-      },
-      {
-        name: "Mangesh Chavan",
-        constituency: "Chalisgaon",
-        party: "BJP",
-        desc: "Youth development and infrastructure growth.",
-        tags: ["🏫 Schools", "🧑 Youth", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/36.pg"
-      },
-      {
-        name: "Kishor Patil",
-        constituency: "Pachora",
-        party: "Shiv Sena",
-        desc: "Regional development with focus on agriculture.",
-        tags: ["🌾 Farming", "🚧 Roads", "💧 Water"],
-        avatar: "https://randomuser.me/api/portraits/men/65.pg"
-      },
-      {
-        name: "Girish Mahajan",
-        constituency: "Jamner",
-        party: "BJP",
-        desc: "Strong governance, infrastructure, and water management.",
-        tags: ["💧 Water", "🌾 Irrigation", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/46.pg"
-      },
-      {
-        name: "Chandrakant Patil",
-        constituency: "Muktainagar",
-        party: "BJP",
-        desc: "Policy-driven governance and economic development.",
-        tags: ["🏫 Education", "🏙️ Urban", "🚧 Roads"],
-        avatar: "https://randomuser.me/api/portraits/men/70.pg"
-      }
-    ];
-
-    const cardsContainer = document.getElementById("cardsContainer");
-    const searchInput = document.getElementById("searchInput");
-    const partyFilter = document.getElementById("partyFilter");
-    const emptyMessage = document.getElementById("emptyMessage");
-
-    function createCard(person) {
-      return `
-        <div class="profile-card">
-          <div class="card-top">
-            <div class="avatar">
-              <img src="${person.avatar}" alt="${person.name}">
-            </div>
-          </div>
-
-          <div class="card-body">
-            <div class="verify">✓</div>
-            <h3 class="name">${person.name}</h3>
-            <div class="designation">आमदार, ${person.constituency}</div>
-            <div class="party">${person.party}</div>
-            <p class="desc">${person.desc}</p>
-
-            <div class="tags">
-              ${person.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-            </div>
-          </div>
-
-          <div class="card-footer">
-            <a href="#">पूर्ण प्रोफाइल पहा →</a>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderCards() {
-      const searchValue = searchInput.value.toLowerCase().trim();
-      const selectedParty = partyFilter.value;
-
-      const filteredProfiles = profiles.filter(person => {
-        const matchesSearch =
-          person.name.toLowerCase().includes(searchValue) ||
-          person.constituency.toLowerCase().includes(searchValue) ||
-          person.party.toLowerCase().includes(searchValue);
-
-        const matchesParty =
-          selectedParty === "all" || person.party === selectedParty;
-
-        return matchesSearch && matchesParty;
-      });
-
-      if (filteredProfiles.length === 0) {
-        cardsContainer.innerHTML = "";
-        emptyMessage.style.display = "block";
-      } else {
-        cardsContainer.innerHTML = filteredProfiles.map(createCard).join("");
-        emptyMessage.style.display = "none";
-      }
-    }
-
-    searchInput.addEventListener("input", renderCards);
-    partyFilter.addEventListener("change", renderCards);
-
-    renderCards();
-  </script>
 </body>
 </html>
